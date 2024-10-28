@@ -1,24 +1,36 @@
 <script>
-  let count = 0;
-  // let string = `you have clicled ${count} times`;
+  let count1 = 0;
+  let count2 = 0
 
-  $: string = `you have clciked ${count} times`
+  $: total = `you have click ${GetTotal(count1 , count2)} time`
 
-  
-  $: if (count > 5){
-    console.log(count, "update")
+  function Increment1(){
+    count1 ++
+  }
+  function Increment2(){
+    count2 --
   }
 
-  function increment(){
-    count += 1;
+  function GetTotal(x , y){
+    console.log(x,y)
+    const yes = x - y
+    console.log(yes,'yes')
+   return yes
   }
+
 </script>
-<button on:click={increment}>click {count}</button>
-<h3>{string}</h3>
+<button on:click={Increment1}>click{count1}</button>
+<button on:click={Increment2}>click{count2}</button>
 
+<h3>{total}</h3>
 
 <style>
   button{
-    padding: 15px 20px;
+    padding: 10px;
+    color: black;
+    background-color: aqua;
+  }
+  h3{
+    color: red;
   }
 </style>
