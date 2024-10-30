@@ -8,4 +8,4 @@
     }
 </script>
 <!-- <Counter initialCount={3} maxCount={maxCount} {...props}/>  -->
-<Button size="small" shadow>Button Text</Button>
+<Button size="small" shadow bgColor="red" textColor="white">Button Text</Button>
