@@ -1,41 +1,65 @@
 <script>
     export let size = "small";
     export let shadow = false;
-    export let bgColor = 'inherit';
-    export let textColor = 'inherit';
+    export let bgColor = "inherit";
+    export let textColor = "inherit";
+
+    export let isLeftHovered = false;
 </script>
 
 <button
-    style:--buttonBgColor={bgColor};
-    style:--buttonTextColor={textColor};
-    class:size-lg={size == "large"}
-    class:size-sm={size == "small"}
-    class:shadow
+    style:--buttonBgColor="{bgColor};"
+    style:--buttonTextColor="{textColor};"
+    class:size-lg={size === "large"}
+    class:size-sm={size === "small"}
+    class:has-left={$$slots.leftContent}
+    class:shadow={shadow}
 >
+    {#if $$slots.leftContent}
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <div
+            class="left-content"
+            on:mouseenter={() => (isLeftHovered = true)}
+            on:mouseleave={() => (isLeftHovered = false)}
+        >
+            <slot name="leftContent" {isLeftHovered} />
+        </div>
+    {/if}
     <slot>text</slot>
 </button>
 
 <style lang="scss">
-    button {
+    button { 
+        display: flex;
+        align-items: center;
         background-color: var(--buttonBgColor);
         color: var(--buttonTextColor);
-        border-radius: 30px;
+        border-radius: 10px;
         border: none;
         font-weight: bold;
         cursor: pointer;
-        &:hover{
-            background-image: linear-gradient(rgba(0,0,0,0.4)0 0);
+
+        .left-content {
+            margin-right: 10px;
         }
-        &:active{
+
+        &:hover {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+        }
+        
+        &:active {
             background-image: linear-gradient(rgba(255, 255, 255, 0.1) 0 0);
         }
+
         &.size-sm {
-            padding: 15px 20px;
+            padding: 15px 40px;
         }
+
         &.size-lg {
             padding: 20px 25px;
             font-size: 20px;
         }
+
         &.shadow {
             box-shadow: 0 0 10px rgba(1, 1, 1, 0.3);
         }
