@@ -12,7 +12,7 @@
 </script>
 
 <!-- <Counter initialCount={3} maxCount={maxCount} {...props}/>  -->
-<Button  size="small" shadow bgColor="red" textColor="white">
+<Button on:click|once={(event) => alert(false)} disabled size="small" shadow bgColor="red" textColor="white">
     <div style:width="20px" slot="leftContent" let:isLeftHovered>
         {#if isLeftHovered}
             <FaAngellist />

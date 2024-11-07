@@ -3,11 +3,14 @@
     export let shadow = false;
     export let bgColor = "inherit";
     export let textColor = "inherit";
+    export let disabled =false
 
     export let isLeftHovered = false;
 </script>
 
 <button
+    on:click|stopPropagation
+    disabled= {disabled}
     style:--buttonBgColor="{bgColor};"
     style:--buttonTextColor="{textColor};"
     class:size-lg={size === "large"}
