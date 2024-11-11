@@ -3,14 +3,16 @@
     export let shadow = false;
     export let bgColor = "inherit";
     export let textColor = "inherit";
-    export let disabled =false
+    // export let disabled =false
+
+    console.log($$restProps)
 
     export let isLeftHovered = false;
 </script>
 
 <button
     on:click|stopPropagation
-    disabled= {disabled}
+    {...$$restProps}
     style:--buttonBgColor="{bgColor};"
     style:--buttonTextColor="{textColor};"
     class:size-lg={size === "large"}
@@ -48,6 +50,11 @@
 
         &:hover {
             background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+        }
+        
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
         
         &:active {
