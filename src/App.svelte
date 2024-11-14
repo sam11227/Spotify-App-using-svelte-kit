@@ -1,24 +1,23 @@
 <script>
-    import Counter from "./lib/Counter.svelte";
-    import Button from "./lib/button.svelte";
-    import { FaAngellist } from "svelte-icons/fa";
-    import FaAllergies from "svelte-icons/fa/FaAllergies.svelte";
-
-    const maxCount = 10;
-    const props = {
-        color: 10,
-        Text: "working",
-    };
+    import TodoList from "./lib/TodoList.svelte";
+    import {v4 as uuid} from "uuid"
+    const todos =[
+        {
+            id: uuid(),
+            title: 'Todo 1',
+            completed : true
+        },
+        {
+            id :uuid(),
+            title:'Todo 2',
+            completed :false
+        },
+        {
+            id: uuid(),
+            title:'Todo 3',
+            completed:true
+        }
+    ]
 </script>
 
-<!-- <Counter initialCount={3} maxCount={maxCount} {...props}/>  -->
-<Button on:click|once={(event) => alert(false)} disabled size="small" shadow bgColor="red" textColor="white">
-    <div style:width="20px" slot="leftContent" let:isLeftHovered>
-        {#if isLeftHovered}
-            <FaAngellist />
-        {:else}
-            <FaAllergies />
-        {/if}
-    </div>
-    Text</Button
->
+<TodoList {todos}/>
